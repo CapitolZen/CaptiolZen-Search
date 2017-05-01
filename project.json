@@ -1,0 +1,5 @@
+{
+  "name": "downdraft_search",
+  "description": "scraper and search tools",
+  "role": "arn:aws:iam::340973886357:role/downdraft_scrapers_lambda_function"
+}

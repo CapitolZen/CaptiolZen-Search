@@ -1,0 +1,11 @@
+{
+  "name": "bill_scraper",
+  "version": "1.0.0",
+  "description": "bill scraper lambda",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "request-promise-native": "^1.0.3"
+  }
+}
