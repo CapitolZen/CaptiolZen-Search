@@ -2,7 +2,7 @@ const main = require('./main');
 
 const event = {
   state: 'mi',
-  bill: 'SB-0006'
+  billId: 'SB-0006'
 };
 
 main(event)

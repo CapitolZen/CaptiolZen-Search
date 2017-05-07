@@ -3,23 +3,20 @@ const moment = require('moment');
 module.exports = {
   sponsorList: [],
   summary: '',
+  title: '',
   summaryUrl: '',
   categories: [],
   versions: [],
   history: [],
   currentCommittee: '',
-  currentStatus: false,
+  status: false,
 
   addCosponsor(name) {
-    let cos = this.sponsorList;
-    cos.push(name);
-    this.sponsorList = cos;
+    this.sponsorList.push(name);
   },
 
-  addCateogry(cat) {
-    let cats = this.categories;
-    cats.push(cat);
-    this.categories = cats;
+  addCategory(cat) {
+    this.categories.push(cat);
   },
 
   /**
@@ -31,7 +28,6 @@ module.exports = {
    * @param date
    */
   addVersion(title, asset, versionId = false, date = false) {
-    console.log("Hello from the other side. I must've called a thousand times");
     let version = {
       title: title,
       asset: asset
@@ -60,7 +56,7 @@ module.exports = {
    * @param date
    */
   addHistory(action, date) {
-    console.log("Hello from the other side. I must've called a thousand times");
+    console.log(date);
     let stamp = this._toUnix(date);
     let entry = {
       date: stamp,
@@ -70,15 +66,6 @@ module.exports = {
     let his = this.history;
     his.push(entry);
     this.history = his;
-  },
-
-  /**
-   * Setter for current status
-   * @public
-   * @param status
-   */
-  setStatus(status, statusfizer) {
-    this.currentStatus = statusfizer[status];
   },
 
   /**

@@ -34,13 +34,23 @@ module.exports = {
     lower: [{'HR': 4000}, {'HR': 1}, {'HCR': 1}, {'HJR': 1}]
   },
   billList: '/mileg.aspx?page=Bills',
-  billDetail: '/doc.aspx?2017-HB-4249',
+  billDetail: '/doc.aspx?',
   baseUrl: 'http://www.legislature.mi.gov',
   currentSession: '2017',
 
   getBillDetailUrl(id) {
     //let clean = id.replace(' ', '-');
     return `${this.baseUrl}${this.billDetail}${this.currentSession}-${id}`;
+  },
+
+  mungeAssetUrl(url) {
+    let base = this.baseUrl;
+
+    if (url.indexOf('../') !== 0) {
+
+    }
+    url.replace('..', '');
+    return `${base}${url}`;
   },
 
   /**
@@ -50,18 +60,23 @@ module.exports = {
    */
   parseBillSummary(id) {
     return new Promise((resolve, reject) => {
+      const self = this;
       let url = this.getBillDetailUrl(id);
       let sf = this.statusfizer;
+      console.log(url);
       rp(url)
         .then(html => {
 
           $ = cheerio.load(html);
+        
+          let title = $('#frg_billstatus_BillHeading').text();
+          console.log(title);
+          model.title = $('#frg_billstatus_BillHeading').text()
           // Handle sponsors
           console.log('sponsors');
           $('#frg_billstatus_SponsorList > a').each(function(i) {
-            console.log(i);
             let name = $(this).text();
-            console.log(name);
+
             if (i === 0) {
               model.sponsor = name;
             } else {
@@ -75,42 +90,49 @@ module.exports = {
 
           // Handle categories
           $('#frg_billstatus_CategoryList ').each(function() {
-            let cat = $(this.text());
+            let cat = $(this).text();
             model.addCategory(cat);
           });
 
           // Handle versions and histroy
          
           $('#frg_billstatus_HistoriesGridView tr').each(function(i) {
-            console.log(i);
             // Skip unlabeled header
             if (i === 0) {
                return true;
              }
 
             // Add to history
-            let date = $(this).find('td').siblings(':first').text();
-            let action = $(this).find('td').siblings(':last').text();
-            model.addHistory(action.text(), date);
+            let date = $(this).find('td').first().text();
+            let action = $(this).find('td').last().text();
+            model.addHistory(action, date);
 
             // versions
             let asset = false,
                 text = false;
 
             if (action.indexOf('INTRODUCED BY') === 0) {
-              asset = $('frg_billstatus_ImageIntroPdf').find('a[href$="PDF"]').attr('href');
+              asset = $('#frg_billstatus_ImageIntroPdf').find('a[href$="pdf"]').attr('href');
               text = "Introduced"
             } else {
-              let sub = $(action).find('a[href$="pdf"]');
-              asset = $(sub).attr('href');
-              text = $(sub).text();
+              let sub = $(this).find('td').last().find('a');
+              if (sub.length) {
+                asset = $(sub).attr('href');
+                if (asset.endsWith('.pdf') || asset.endsWith('.PDF')) {
+                  console.log(asset);
+
+                }
+                
+              }
+
+              text = $(this).find('td').last().text();
             }
 
             model.addVersion(action, asset, text, date);
-            
-            // Set status
+
+            // Set status 
             if (sf.hasOwnProperty(action)) {
-              model.setStatus(action);
+              model.status = sf[action];
             }
 
           });
