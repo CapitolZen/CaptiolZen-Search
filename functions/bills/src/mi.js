@@ -99,7 +99,7 @@ module.exports = {
              }
 
             // Add to history
-            let date = $(this).find('td').first().text();
+            let date = $(this).find('td').first().text().trim();
             let action = $(this).find('td').last().text();
             model.addHistory(action, date);
 
@@ -116,7 +116,6 @@ module.exports = {
               if (sub.length) {
                   asset = $(sub).attr('href');
                 if (asset.endsWith('.pdf') || asset.endsWith('.PDF')) {
-                  console.log(asset);
                   asset = self.mungeAssetUrl(asset);
                   text = $(this).find('td').last().text();
                   model.addVersion(action, asset, text, date);
@@ -128,7 +127,6 @@ module.exports = {
             if (sf.hasOwnProperty(action)) {
               model.status = sf[action];
             }
-
           });
 
           resolve(JSON.stringify(model));

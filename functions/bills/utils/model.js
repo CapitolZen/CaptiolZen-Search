@@ -74,8 +74,9 @@ module.exports = {
    * @returns {number}
    * @private
    */
+  //todo require format here
   _toUnix(date) {
-    return moment(date).unix();
+    return moment(date, "M/D/YYYY").unix();
   },
 
   export() {
