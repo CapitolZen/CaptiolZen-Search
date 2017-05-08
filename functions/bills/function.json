@@ -1,0 +1,8 @@
+{
+  "description": "find bills",
+  "timeout": 120,
+  "memory": 384,
+  "runtime": "nodejs6.10",
+  "handler": "index.handle"
+}
+
