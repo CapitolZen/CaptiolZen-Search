@@ -56,7 +56,7 @@ module.exports = {
    * @param date
    */
   addHistory(action, date) {
-    console.log(date);
+
     let stamp = this._toUnix(date);
     let entry = {
       date: stamp,

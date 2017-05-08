@@ -3,6 +3,7 @@ const cheerio = require('cheerio'),
       moment = require('moment'),
       rp = require('request-promise-native'),
       utils = require('../utils'),
+      url = require('url'),
       model = require('../utils/model');
 
 module.exports = {
@@ -43,14 +44,9 @@ module.exports = {
     return `${this.baseUrl}${this.billDetail}${this.currentSession}-${id}`;
   },
 
-  mungeAssetUrl(url) {
+  mungeAssetUrl(u) {
     let base = this.baseUrl;
-
-    if (url.indexOf('../') !== 0) {
-
-    }
-    url.replace('..', '');
-    return `${base}${url}`;
+    return url.resolve(base, u);
   },
 
   /**
@@ -113,22 +109,20 @@ module.exports = {
 
             if (action.indexOf('INTRODUCED BY') === 0) {
               asset = $('#frg_billstatus_ImageIntroPdf').find('a[href$="pdf"]').attr('href');
-              text = "Introduced"
+              text = "Introduced";
+              model.addVersion(action, asset, text, date);
             } else {
               let sub = $(this).find('td').last().find('a');
               if (sub.length) {
-                asset = $(sub).attr('href');
+                  asset = $(sub).attr('href');
                 if (asset.endsWith('.pdf') || asset.endsWith('.PDF')) {
                   console.log(asset);
-
+                  asset = self.mungeAssetUrl(asset);
+                  text = $(this).find('td').last().text();
+                  model.addVersion(action, asset, text, date);
                 }
-                
               }
-
-              text = $(this).find('td').last().text();
             }
-
-            model.addVersion(action, asset, text, date);
 
             // Set status 
             if (sf.hasOwnProperty(action)) {
