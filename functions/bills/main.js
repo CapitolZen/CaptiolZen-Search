@@ -4,5 +4,7 @@ const states = {
 };
 module.exports = (event) => {
   let state = states[event.state];
-  return state.parseBillSummary(event.billId);
+  let parsePromise = state.parseBillSummary(event.billId);
+  let nextBillPromise = state.nextBillExists(event.billId);
+  return Promise.all([parsePromise, nextBillPromise]);
 };

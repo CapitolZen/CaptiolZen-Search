@@ -50,6 +50,38 @@ module.exports = {
   },
 
   /**
+   * Return if bill exists
+   * @param id
+   * @returns {Promise}
+   */
+  nextBillExists(id) {
+    let num = id.split('-');
+    let id = parseInt(num[1]);
+    id++;
+    let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
+
+    return new Promise((resolve) => {
+      let output = {id: id};
+      rp(newUrl)
+        .then(html => {
+          let $ = cheerio.load(html);
+          let title = $('title').text();
+          if (title.includes('Not Found')) {
+            output.exists = false;
+            resolve(output);
+          } else {
+            output.exists = true;
+            resolve(output);
+          }
+        })
+        .catch(() => {
+          output.exists = false;
+          resolve(true)
+        })
+    });
+  },
+
+  /**
    * Making the magic happen
    * @param  {string} id bill id
    * @return {Promise}    A promise that resolves an object containing bill data
@@ -63,7 +95,7 @@ module.exports = {
       rp(url)
         .then(html => {
 
-          $ = cheerio.load(html);
+          let $ = cheerio.load(html);
         
           let title = $('#frg_billstatus_BillHeading').text();
           console.log(title);
