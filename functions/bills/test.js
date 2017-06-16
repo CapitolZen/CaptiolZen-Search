@@ -1,8 +1,8 @@
 const main = require('./main');
 
 const event = {
-  state: 'mi',
-  billId: 'SB-0006'
+  state: 'MI',
+  billId: 'HB-4001'
 };
 
 main(event)
