@@ -1,6 +1,6 @@
 const mi = require('./src/mi');
 const states = {
-  mi: mi,
+  MI: mi,
 };
 module.exports = (event) => {
   let state = states[event.state];
