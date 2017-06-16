@@ -56,7 +56,7 @@ module.exports = {
    */
   nextBillExists(id) {
     let num = id.split('-');
-    let id = parseInt(num[1]);
+    id = parseInt(num[1]);
     id++;
     let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
 
@@ -96,7 +96,7 @@ module.exports = {
         .then(html => {
 
           let $ = cheerio.load(html);
-        
+
           let title = $('#frg_billstatus_BillHeading').text();
           console.log(title);
           model.title = $('#frg_billstatus_BillHeading').text()
@@ -123,7 +123,7 @@ module.exports = {
           });
 
           // Handle versions and histroy
-         
+
           $('#frg_billstatus_HistoriesGridView tr').each(function(i) {
             // Skip unlabeled header
             if (i === 0) {
@@ -155,7 +155,7 @@ module.exports = {
               }
             }
 
-            // Set status 
+            // Set status
             if (sf.hasOwnProperty(action)) {
               model.status = sf[action];
             }
