@@ -161,7 +161,6 @@ module.exports = {
               model.status = sf[action];
             }
           });
-          console.log(model.export());
           resolve(model.export());
         })
         .catch(err => {

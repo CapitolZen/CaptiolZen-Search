@@ -1,5 +1,8 @@
 {
-  "name": "downdraft_search",
-  "description": "scraper and search tools",
-  "role": "arn:aws:iam::340973886357:role/downdraft_scrapers_lambda_function"
+  "name": "capitolzen_search",
+  "description": "search and parsing lambdas",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::340973886357:role/capitolzen_search_lambda_function",
+  "environment": {}
 }
