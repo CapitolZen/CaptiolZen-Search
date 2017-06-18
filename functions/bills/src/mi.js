@@ -91,7 +91,6 @@ module.exports = {
       const self = this;
       let url = this.getBillDetailUrl(id);
       let sf = this.statusfizer;
-      console.log(url);
       rp(url)
         .then(html => {
 
@@ -162,7 +161,7 @@ module.exports = {
               model.status = sf[action];
             }
           });
-
+          console.log(model.export());
           resolve(model.export());
         })
         .catch(err => {
