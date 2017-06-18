@@ -2,11 +2,17 @@
   "name": "bill_scraper",
   "version": "1.0.0",
   "description": "bill scraper lambda",
+  "scripts": {
+    "test": "mocha",
+    "int": "node ./test.js"
+  },
   "main": "main.js",
   "license": "MIT",
   "dependencies": {
     "async": "^2.4.0",
+    "chai-as-promised": "^7.0.0",
     "cheerio": "^0.22.0",
+    "mocha": "^3.4.2",
     "moment": "^2.18.1",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3"

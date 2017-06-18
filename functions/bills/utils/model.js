@@ -1,6 +1,8 @@
 const moment = require('moment');
 
 module.exports = {
+  state: null,
+  stateId: null,
   sponsorList: [],
   summary: '',
   title: '',
@@ -80,9 +82,7 @@ module.exports = {
   },
 
   export() {
-    return {
-      history: this.history
-    };
+    return JSON.stringify(this)
   }
 
 };

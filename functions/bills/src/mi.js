@@ -95,13 +95,16 @@ module.exports = {
       rp(url)
         .then(html => {
 
+          // Setup Basic data
+          model.state = 'MI';
+          model.stateId = id;
+
+          // Start the parsing party
           let $ = cheerio.load(html);
 
           let title = $('#frg_billstatus_BillHeading').text();
-          console.log(title);
           model.title = $('#frg_billstatus_BillHeading').text()
           // Handle sponsors
-          console.log('sponsors');
           $('#frg_billstatus_SponsorList > a').each(function(i) {
             let name = $(this).text();
 
@@ -110,7 +113,6 @@ module.exports = {
             } else {
               model.addCosponsor(name);
             }
-
           });
 
           // Handle summary
@@ -161,7 +163,7 @@ module.exports = {
             }
           });
 
-          resolve(JSON.stringify(model));
+          resolve(model.export());
         })
         .catch(err => {
           reject(err);
