@@ -1,12 +1,14 @@
-const moment = require('moment');
+const moment = require('moment'),
+      _ = require('lodash');
 
 module.exports = {
   state: null,
   stateId: null,
   sponsorList: [],
-  summary: '',
-  title: '',
-  summaryUrl: '',
+  summary: false,
+  sponsor: false,
+  title: false,
+  summaryUrl: false,
   categories: [],
   versions: [],
   history: [],
@@ -82,7 +84,12 @@ module.exports = {
   },
 
   export() {
-    return JSON.stringify(this)
+    let keys = Object.keys(this);
+    let obj = {};
+    keys.forEach((k) => {
+      obj[k] = this[k];
+    });
+    return _.omitBy(obj, _.isFunction);
   }
 
 };

@@ -1,15 +1,17 @@
-const main = require('./main');
+const main = require('./main'),
+      _ = require('lodash');
 
-const event = {
+const num = _.random(4001, 4500);
+const data = {
   state: 'MI',
-  billId: 'HB-4001'
+  billId: `HB-${num}`
 };
 
-main(event)
+main(data)
   .then(output => {
-    let data = {
+    let d = {
       data: output[0],
       nextBill: (output[1].exists) ? output[1].id : false
     };
-    console.log(output);
+    console.log(d);
   });
