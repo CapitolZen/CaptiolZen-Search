@@ -10,6 +10,10 @@ dependencies:
     - chmod +x ~/apex
     - cd functions/bills && yarn install
 
+test:
+  override:
+    -- ./test.sh
+
 deployment:
   prod:
     branch: master
