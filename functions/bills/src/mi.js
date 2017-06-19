@@ -61,7 +61,7 @@ module.exports = {
     let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
 
     return new Promise((resolve) => {
-      let output = {id: id};
+      let output = {id: `${num[0]}-${id}`};
       rp(newUrl)
         .then(html => {
           let $ = cheerio.load(html);
@@ -93,16 +93,20 @@ module.exports = {
       let sf = this.statusfizer;
       rp(url)
         .then(html => {
-
           // Setup Basic data
           model.state = 'MI';
           model.stateId = id;
 
           // Start the parsing party
           let $ = cheerio.load(html);
+          // Need to make sure bill exists
+          let title = $('title').text();
+          if (title.includes('Not Found')) {
+            reject({error: "Bill doesn't exist"})
+          }
 
-          let title = $('#frg_billstatus_BillHeading').text();
-          model.title = $('#frg_billstatus_BillHeading').text()
+
+            model.title = $('#frg_billstatus_BillHeading').text()
           // Handle sponsors
           $('#frg_billstatus_SponsorList > a').each(function(i) {
             let name = $(this).text();
@@ -164,7 +168,7 @@ module.exports = {
           resolve(model.export());
         })
         .catch(err => {
-          reject(err);
+          reject({error: err});
         });
     });
 
