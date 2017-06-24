@@ -56,8 +56,14 @@ module.exports = {
    */
   nextBillExists(id) {
     let num = id.split('-');
-    id = parseInt(num[1]);
-    id++;
+    let newId = parseInt(num[1]);
+    newId++;
+
+    // Senate Bills start with leading 0's. This fixes that error
+    if (id.indexOf('0') == '0') {
+      newId = ("0000" + newId).slice(-4);
+    }
+
     let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
 
     return new Promise((resolve) => {
