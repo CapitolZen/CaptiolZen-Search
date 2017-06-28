@@ -4,7 +4,7 @@ const main = require('./main'),
 const num = _.random(4001, 4300);
 const data = {
   state: 'MI',
-  billId: `HB-${num}`
+  billId: `SB-0100`
 };
 
 console.log(data);

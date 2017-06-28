@@ -1,6 +1,7 @@
 const cheerio = require('cheerio'),
       async = require('async'),
       moment = require('moment'),
+      _ = require('lodash'),
       rp = require('request-promise-native'),
       utils = require('../utils'),
       url = require('url'),
@@ -60,14 +61,15 @@ module.exports = {
     newId++;
 
     // Senate Bills start with leading 0's. This fixes that error
-    if (id.indexOf('0') == '0') {
+    if (num[1].indexOf('0') == '0') {
       newId = ("0000" + newId).slice(-4);
     }
 
-    let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
+    let newStateId = `${num[0]}-${newId}`;
 
+    let newUrl = this.getBillDetailUrl(newStateId);
     return new Promise((resolve) => {
-      let output = {id: `${num[1]}-${id}`};
+      let output = {id: newStateId};
       rp(newUrl)
         .then(html => {
           let $ = cheerio.load(html);
@@ -134,7 +136,7 @@ module.exports = {
           });
 
           // Handle versions and histroy
-
+          
           $('#frg_billstatus_HistoriesGridView tr').each(function(i) {
             // Skip unlabeled header
             if (i === 0) {
@@ -171,9 +173,11 @@ module.exports = {
               }
             }
 
-            // Set status
-            if (sf.hasOwnProperty(action)) {
-              model.status = sf[action];
+            // munge and set status
+            let statusKeys = _.keys(sf);
+            let status = statusKeys.find(key => { return action.indexOf(key) === 0 }) || false;
+            if (status) {
+              model.status = sf[status];
             }
           });
           resolve(model.export());
