@@ -3,20 +3,20 @@ const moment = require('moment'),
 
 module.exports = {
   state: null,
-  stateId: null,
-  sponsorList: [],
+  state_id: null,
+  sponsor_list: [],
   summary: false,
   sponsor: false,
   title: false,
-  summaryUrl: false,
+  summary_url: false,
   categories: [],
   versions: [],
   history: [],
-  currentCommittee: '',
+  current_committee: '',
   status: false,
 
   addCosponsor(name) {
-    this.sponsorList.push(name);
+    this.sponsor_list.push(name);
   },
 
   addCategory(cat) {
