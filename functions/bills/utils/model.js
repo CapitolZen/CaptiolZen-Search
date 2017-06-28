@@ -16,7 +16,7 @@ module.exports = {
   status: false,
 
   addCosponsor(name) {
-    this.sponsorList.push(name);
+    this.sponsor_list.push(name);
   },
 
   addCategory(cat) {

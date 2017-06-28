@@ -67,7 +67,7 @@ module.exports = {
     let newUrl = this.getBillDetailUrl(`${num[0]}-${id}`);
 
     return new Promise((resolve) => {
-      let output = {id: `${num[0]}-${id}`};
+      let output = {id: `${num[1]}-${id}`};
       rp(newUrl)
         .then(html => {
           let $ = cheerio.load(html);
@@ -101,7 +101,7 @@ module.exports = {
         .then(html => {
           // Setup Basic data
           model.state = 'MI';
-          model.stateId = id;
+          model.state_id = id;
 
           // Start the parsing party
           let $ = cheerio.load(html);
@@ -143,14 +143,19 @@ module.exports = {
 
             // Add to history
             let date = $(this).find('td').first().text().trim();
-            let action = $(this).find('td').last().text();
+            let action = $(this).find('td').last().text().trim().toLowerCase();
+            let $action = $(this).find('td').last();
             model.addHistory(action, date);
 
             // versions
             let asset = false,
                 text = false;
 
-            if (action.indexOf('INTRODUCED BY') === 0) {
+            if (action.indexOf('referred to committee') === 0) {
+              model.current_committee = $($action).find('a').text();
+            }
+
+            if (action.indexOf('introduced by') === 0) {
               asset = $('#frg_billstatus_ImageIntroPdf').find('a[href$="pdf"]').attr('href');
               text = "Introduced";
               model.addVersion(action, asset, text, date);

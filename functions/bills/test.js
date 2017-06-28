@@ -1,11 +1,13 @@
 const main = require('./main'),
       _ = require('lodash');
 
-const num = _.random(4001, 4500);
+const num = _.random(4001, 4300);
 const data = {
   state: 'MI',
   billId: `HB-${num}`
 };
+
+console.log(data);
 
 main(data)
   .then(output => {

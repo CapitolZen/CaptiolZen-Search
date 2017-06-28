@@ -3,24 +3,34 @@ const assert = require('assert'),
       _ = require('lodash');
 
 describe('bill fetch and parse', function() {
-  const num = _.random(4001, 4500);
+  const num = _.random(4001, 4300);
   let data = {
       state: 'MI',
       billId: `HB-${num}`
     };
 
   it('should return correct stateId', function() {
-    main(data)
+    return main(data)
       .then(results => {
-        assert.equal(results[0].stateId, `HB-${num}`);
-        done();
+        assert.equal(results[0].state_id, data.billId);
     });
   });
   it('should return a sponsor', function() {
-    main(data)
+    return main(data)
       .then(results => {
-        let obj = JSON.parse(results[0]);
-        assert.ok(obj.sponsor);
+        assert.ok(results[0].sponsor);
       })
+  });
+  it('should have items in history', function() {
+    return main(data)
+      .then(results => {
+        assert.ok(results[0].history.length);
+      })
+  });
+  it('should have a commitee assignment', function() {
+    return main(data)
+      .then(resuts => {
+        assert.ok(resuts[0].current_committee);
+      });
   });
 });
