@@ -14,6 +14,7 @@ module.exports = {
   history: [],
   current_committee: '',
   status: false,
+  remote_url: '',
 
   addCosponsor(name) {
     this.sponsor_list.push(name);
@@ -48,9 +49,7 @@ module.exports = {
 
     version.date = timestamp;
 
-    let ver = this.versions;
-    ver.push(version);
-    this.versions = ver;
+    this.versions.push(version);
   },
 
   /**
@@ -67,9 +66,7 @@ module.exports = {
       action: action
     };
 
-    let his = this.history;
-    his.push(entry);
-    this.history = his;
+    this.history.push(entry);
   },
 
   /**

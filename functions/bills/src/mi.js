@@ -104,6 +104,7 @@ module.exports = {
           // Setup Basic data
           model.state = 'MI';
           model.state_id = id;
+          model.remote_url = url;
 
           // Start the parsing party
           let $ = cheerio.load(html);
@@ -113,8 +114,7 @@ module.exports = {
             reject({error: "Bill doesn't exist"})
           }
 
-
-            model.title = $('#frg_billstatus_BillHeading').text()
+            model.title = $('#frg_billstatus_BillHeading').text();
           // Handle sponsors
           $('#frg_billstatus_SponsorList > a').each(function(i) {
             let name = $(this).text();
