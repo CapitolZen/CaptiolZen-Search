@@ -9,10 +9,12 @@ dependencies:
     - curl -sL https://github.com/apex/apex/releases/download/v0.6.1/apex_linux_amd64 -o ~/apex
     - chmod +x ~/apex
   override:
+    - chmod +x install.sh
     - ./install.sh
 
 test:
   override:
+    - chmod +x test.sh
     - ./test.sh
 
 deployment:
