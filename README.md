@@ -2,6 +2,7 @@
 
 Search related things for downdraft
 
+[![CircleCI](https://circleci.com/gh/UpdraftGroup/CaptiolZen-Search.svg?style=svg)](https://circleci.com/gh/UpdraftGroup/CaptiolZen-Search)
 ## Setup 
 
 Install Apex.run See: [Github Site](https://github.com/apex/apex)
