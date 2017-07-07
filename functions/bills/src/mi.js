@@ -127,7 +127,12 @@ module.exports = {
           });
 
           // Handle summary
-          model.summary = $('#frg_billstatus_ObjectSubject').text();
+          let summaryText = $('#frg_billstatus_ObjectSubject').text();
+          model.summary = summaryText;
+
+          // Handle affected section
+          let sums = summaryText.split(/\.(.+)/);
+          model.affected_section = sums[1].trim();
 
           // Handle categories
           $('#frg_billstatus_CategoryList ').each(function() {
@@ -148,13 +153,14 @@ module.exports = {
             let action = $(this).find('td').last().text().trim().toLowerCase();
             let $action = $(this).find('td').last();
             model.addHistory(action, date);
+            model.last_action_date = date;
 
             // versions
             let asset = false,
                 text = false;
 
             if (action.indexOf('referred to committee') === 0) {
-              model.current_committee = $($action).find('a').text();
+              model.current_committee = $($action).find('a').text().toLowerCase();
             }
 
             if (action.indexOf('introduced by') === 0) {
@@ -164,7 +170,7 @@ module.exports = {
             } else {
               let sub = $(this).find('td').last().find('a');
               if (sub.length) {
-                  asset = $(sub).attr('href');
+                  asset = $(sub).attr('href').toLowerCase();
                 if (asset.endsWith('.pdf') || asset.endsWith('.PDF')) {
                   asset = self.mungeAssetUrl(asset);
                   text = $(this).find('td').last().text();

@@ -15,6 +15,8 @@ module.exports = {
   current_committee: '',
   status: false,
   remote_url: '',
+  last_action_date: false,
+  affected_section: false,
 
   addCosponsor(name) {
     this.sponsor_list.push(name);

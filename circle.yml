@@ -8,11 +8,12 @@ dependencies:
   pre:
     - curl -sL https://github.com/apex/apex/releases/download/v0.6.1/apex_linux_amd64 -o ~/apex
     - chmod +x ~/apex
-    - cd functions/bills && yarn install
+  override:
+    - ~./install.sh
 
 test:
   override:
-    -- ./test.sh
+    - ~./test.sh
 
 deployment:
   prod:
