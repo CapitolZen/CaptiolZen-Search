@@ -30,7 +30,7 @@ describe('bill fetch and parse', function() {
       })
   });
 
-  it('should have a commitee assignment', function() {
+  it('should have a committee assignment', function() {
     return main(data)
       .then(resuts => {
         assert.ok(resuts[0].current_committee);
@@ -42,5 +42,17 @@ describe('bill fetch and parse', function() {
       .then(results => {
         assert.ok(results[0].status);
       });
+  });
+  it('should have a last action date', function() {
+    return main(data)
+      .then(results => {
+        assert.ok(results[0].last_action_date)
+      })
+  });
+  it('should have an affected section prop', function() {
+    return main(data)
+      .then(results => {
+        assert.ok(results[0].affected_section)
+      })
   });
 });
