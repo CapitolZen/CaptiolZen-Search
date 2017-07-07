@@ -153,7 +153,7 @@ module.exports = {
             let action = $(this).find('td').last().text().trim().toLowerCase();
             let $action = $(this).find('td').last();
             model.addHistory(action, date);
-            model.last_action_date = moment(data).format("YYYY-MM-DD");
+            model.last_action_date = moment(date).format("YYYY-MM-DD");
 
             // versions
             let asset = false,
