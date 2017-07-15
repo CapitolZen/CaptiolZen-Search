@@ -10,27 +10,24 @@ const event = {
     bills: [
       {
         id: 'tasdfasdfasdf',
-        attributes: {
-          state: 'MI',
-          'current-committee': 'Local Government',
-          sponsor: 'Michael McCready',
-          'state-id': 'HB-4100',
-          status: 'referral-committee',
-          summary: 'Local government; water and sewer; municipal stormwater utilities; provide for, and authorize fee. Creates new act.',
-          'remote-url': 'http://google.com'
-        }
+        state: 'MI',
+        'current-committee': 'Local Government',
+        sponsor: 'Michael McCready',
+        'state-id': 'HB-4100',
+        status: 'referral-committee',
+        summary: 'Local government; water and sewer; municipal stormwater utilities; provide for, and authorize fee. Creates new act.',
+        'remote-url': 'http://google.com'
       },
       {
         id: 'asdfasdfasd',
-        attributes: {
-          'current-committee': "",
-          sponsor: "Mary Whiteford",
-          state: "MI",
-          'state-id': "HB-4540",
-          status: "executive-receipt",
-          summary: "Environmental protection; funding; sunsets on fees for wastewater and drinking water certifications and waste program facility and user charges; extend. Amends secs. 3110, 4104, 11135, 11153, 12109 & 12112 of 1994 PA 451 (MCL 324.3110 et seq.).",
-          title: "House Bill 4540 (2017)"
-        }
+        'current-committee': "",
+        sponsor: "Mary Whiteford",
+        state: "MI",
+        'state-id': "HB-4540",
+        status: "executive-receipt",
+        summary: "Environmental protection; funding; sunsets on fees for wastewater and drinking water certifications and waste program facility and user charges; extend. Amends secs. 3110, 4104, 11135, 11153, 12109 & 12112 of 1994 PA 451 (MCL 324.3110 et seq.).",
+        title: "House Bill 4540 (2017)"
+
       }
     ]
   }

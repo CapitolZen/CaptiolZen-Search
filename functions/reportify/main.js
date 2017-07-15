@@ -18,14 +18,10 @@ module.exports = function({data, bucket, organization, group}) {
     let doc = new Docxtemplater();
     doc.loadZip(zip);
 
-    let normalizedBills = bills.map(b => {
-      return b.attributes;
-    });
-
     doc.setData({
       title: title,
       summary: summary,
-      bills: normalizedBills
+      bills: bills
     });
 
     try {
