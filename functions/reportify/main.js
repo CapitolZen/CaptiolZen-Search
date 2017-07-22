@@ -10,7 +10,11 @@ const s3 = new AWS.S3();
 
 module.exports = function({data, bucket, organization, group}) {
   return new Promise((resolve, reject) => {
-    let {bills, title, summary} = data;
+    let {title} = data;
+
+    //sanitize inputs
+    title = title.replace(/\s/g, '-');
+    title = title.replace(/[^a-zA-Z0-9-_]/g, '');
 
     let template = fs.readFileSync(path.resolve(__dirname, 'templates/list.docx'), 'binary');
 
@@ -26,22 +30,22 @@ module.exports = function({data, bucket, organization, group}) {
       console.log(error);
       reject(error);
     }
-
     let buff = doc.getZip().generate({type: 'nodebuffer'});
     let currentTime = moment().unix();
+    let key = `${organization}/${group}/${currentTime}-${title}.docx`;
     let params = {
       Body: buff,
       Bucket: bucket,
-      Key: `${organization}/${group}/${currentTime}-${title}.docx`,
+      Key: key,
       ACL: 'public-read'
     };
 
-    s3.putObject(params, (err, data) => {
+    s3.putObject(params, (err) => {
       if (err) {
         reject(err);
       }
-      console.log(data);
-      resolve(data);
+      let url = `https://s3.amazonaws.com/${bucket}/${key}`;
+      resolve(url);
     });
   });
 };
