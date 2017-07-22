@@ -18,11 +18,7 @@ module.exports = function({data, bucket, organization, group}) {
     let doc = new Docxtemplater();
     doc.loadZip(zip);
 
-    doc.setData({
-      title: title,
-      summary: summary,
-      bills: bills
-    });
+    doc.setData(data);
 
     try {
       doc.render();
