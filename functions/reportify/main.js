@@ -15,7 +15,6 @@ module.exports = function({data, bucket, organization, group}) {
     //sanitize inputs
     title = title.replace(/\s/g, '-');
     title = title.replace(/[^a-zA-Z0-9-_]/g, '');
-
     let template = fs.readFileSync(path.resolve(__dirname, 'templates/list.docx'), 'binary');
 
     let zip = new JSZip(template);
@@ -23,7 +22,6 @@ module.exports = function({data, bucket, organization, group}) {
     doc.loadZip(zip);
 
     doc.setData(data);
-
     try {
       doc.render();
     } catch (error) {

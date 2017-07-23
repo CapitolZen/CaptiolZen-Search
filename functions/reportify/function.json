@@ -1,5 +1,5 @@
 {
-  "description": "find bills",
+  "description": "create reports",
   "timeout": 120,
   "memory": 384,
   "runtime": "nodejs6.10",
