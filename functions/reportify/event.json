@@ -1,0 +1,45 @@
+{
+  "data": {
+    "title": "with a word doc",
+    "id": "714c9ab8-d720-417c-b970-b7b4d1eab54b",
+    "summary": "hopefully this works",
+    "bills": [
+      {
+        "state_id": "HB-4001",
+        "state": "MI",
+        "id": "c62f0ee8-f67c-42b7-a113-1e1d86124e84",
+        "sponsor": "Lee Chatfield",
+        "summary": "Individual income tax; rate; annual rollback of rate until zero; provide for. Amends sec. 51 of 1967 PA 281 (MCL 206.51).",
+        "current_committee": "Tax Policy",
+        "status": "reading-3",
+        "position": "netural",
+        "position_detail": null
+      },
+      {
+        "state_id": "SB-0337",
+        "state": "MI",
+        "id": "a30f58d9-0aee-47c7-936f-5e21b9f976e4",
+        "sponsor": "Margaret O'Brien",
+        "summary": "Crimes; other; procedures of clitoridectomy, infibulation, or other female genital mutilation; prohibit, and provide penalties. Amends 1931 PA 328 (MCL 750.1 - 750.568) by adding sec. 136.",
+        "current_committee": "law and justice",
+        "status": "executive-receipt",
+        "position": "neutral",
+        "position_detail": null
+      },
+      {
+        "state_id": "SB-0338",
+        "state": "MI",
+        "id": "ed9dd5cc-2b94-4195-9a3f-85df82159d3f",
+        "sponsor": "Rick Jones",
+        "summary": "Criminal procedure; sentencing guidelines; crime of performing clitoridectomy, infibulation, or other female genital mutilation; provide sentencing guidelines for. Amends sec. 16g, ch. XVII of 1927 PA 175 (MCL 777.16g).  TIE BAR WITH: SB 0337'17",
+        "current_committee": "law and justice",
+        "status": "executive-receipt",
+        "position": "neutral",
+        "position_detail": null
+      }
+    ]
+  },
+  "bucket": "capitolzen-user-files",
+  "organization": "894132b7-6ff6-44c5-b58b-2b036cd91129",
+  "group": "e9ed3a41-1b13-4d6c-b758-dadd5e4b0fd4"
+}
