@@ -1,11 +1,9 @@
+let dotenv = require('dotenv').config();
 
-// TODO Need to create data format here
-module.exports = {
-    serialize(object) {
-      return JSON.stringify(object);
-    },
+  let client = require('./client');
 
-    deserialize(json) {
-      return JSON.parse(json);
-    }
-};
+client.indices.create({
+  index: 'bills'
+}).then(res => {
+  console.log(res);
+});

@@ -1,19 +1,15 @@
 const main = require('./main'),
-      _ = require('lodash');
+      _ = require('lodash'),
+      fs = require('fs');
 
-const num = _.random(4001, 4300);
-const data = {
-  state: 'MI',
-  billId: `SB-0100`
-};
-
-console.log(data);
-
-main(data)
-  .then(output => {
-    let d = {
-      data: output[0],
-      nextBill: (output[1].exists) ? output[1].id : false
-    };
-    console.log(d);
-  });
+fs.readFile('./event.json', (err, data) => {
+  if (err) {
+    console.log(err);
+  } else {
+    data = JSON.parse(data);
+    main(data)
+      .then(results => {
+        console.log(results);
+      })
+  }
+});

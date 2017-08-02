@@ -1,15 +1,29 @@
-const mi = require('./src/mi');
+require('dotenv').config();
+
+const client = require('./utils/client');
+
 const states = {
-  MI: mi,
+  mi: require('./src/mi')
 };
+
+
 /**
  * Main api
  * @param event
  * @returns {Promise.<*>}
  */
-module.exports = (event) => {
-  let state = states[event.state];
-  let parsePromise = state.parseBillSummary(event.billId);
-  let nextBillPromise = state.nextBillExists(event.billId);
-  return Promise.all([parsePromise, nextBillPromise]);
+module.exports = ({state, url, bill}) => {
+  let func = states[state];
+  return func.ingestBillText(url)
+    .then(model => {
+      console.log(model);
+      let {attributes} = bill;
+      attributes['full-text'] = model.bill_text;
+      return client.create({
+        index: 'bills',
+        type: bill.attributes.type,
+        id: bill.id,
+        body: attributes
+      })
+    })
 };
