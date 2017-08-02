@@ -1,8 +1,9 @@
-const client = require('./utils/client'),
-      mi = require('./src/mi');
+require('dotenv').config();
+
+const client = require('./utils/client');
 
 const states = {
-  MI: mi,
+  mi: require('./src/mi')
 };
 
 
@@ -12,8 +13,8 @@ const states = {
  * @returns {Promise.<*>}
  */
 module.exports = ({state, url, bill}) => {
-  let state = states[state];
-  return state.ingestBillText(url)
+  let func = states[state];
+  return func.ingestBillText(url)
     .then(model => {
       let {attributes} = bill;
       attributes['full-text'] = model.bill_text;
