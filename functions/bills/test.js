@@ -1,4 +1,5 @@
 const main = require('./main'),
+      dotenv = require('dotenv').config(),
       _ = require('lodash');
 
 const num = _.random(4001, 4300);
