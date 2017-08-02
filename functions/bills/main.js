@@ -16,6 +16,7 @@ module.exports = ({state, url, bill}) => {
   let func = states[state];
   return func.ingestBillText(url)
     .then(model => {
+      console.log(model);
       let {attributes} = bill;
       attributes['full-text'] = model.bill_text;
       return client.create({

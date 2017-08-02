@@ -13,13 +13,10 @@ module.exports = {
             reject({error: 'Bill does not exist'});
           }
 
-          let pages = $('div[class^="WordSection"]');
-          let text = [];
-          pages.each(p => {
-            text.push($(this).text());
-          });
+          let text = $('body').text().trim();
+          text.replace(/\r\n+|\n+|\r+/g, "");
 
-          model.bill_text = text.join('\n');
+          model.bill_text = text;
 
           resolve(model);
         })
