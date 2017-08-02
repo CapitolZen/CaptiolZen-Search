@@ -1,4 +1,17 @@
 {
-  "state": "MI",
-  "billId": "HB-4001"
+  "state": "mi",
+  "url": "http://www.legislature.mi.gov/documents/2017-2018/billintroduced/House/htm/2017-HIB-4006.htm",
+  "bill": {
+    "type": "bills",
+    "id": "aafsd-asdfad-asdfasdfasd-asdfasdasd",
+    "attributes" : {
+      "state": "mi",
+      "state-id": "9000",
+      "type": "bill",
+      "session": "2021-2022",
+      "status": null,
+      "history" :[],
+      "title": "Occupations; business licensing and registration; licensure of used motor vehicle parts dealers; exclude certain businesses regulated under the natural resources and environmental protection act. Amends secs. 1 & 2 of 1986 PA 119 (MCL 257.1351 & 257.1352)."
+    }
+  }
 }

@@ -1,4 +1,4 @@
-const elasticsearch = require('elasticsearch'),
+const client = require('./utils/client'),
       mi = require('./src/mi');
 
 const states = {
@@ -11,11 +11,17 @@ const states = {
  * @param event
  * @returns {Promise.<*>}
  */
-module.exports = (event) => {
-  return new Promise((resolve, reject) => {
-    let state = states[event.model.state];
-    state.ingestBillText(model => {
-      
+module.exports = ({state, url, bill}) => {
+  let state = states[state];
+  return state.ingestBillText(url)
+    .then(model => {
+      let {attributes} = bill;
+      attributes['full-text'] = model.bill_text;
+      return client.create({
+        index: 'bills',
+        type: bill.attributes.type,
+        id: bill.id,
+        body: attributes
+      })
     })
-  });
 };
