@@ -1,8 +1,8 @@
 {
   "data": {
     "title": "Weekly report",
-    "id": "c78967be-83c5-4f98-ac14-2bc1834ec5a0",
-    "summary": "stuff and things",
+    "id": "6b4ff1a5-db8a-4a72-bced-3d284d20603d",
+    "summary": "This report reflects the bills wwwww.wwww consulting is monitoring this week.",
     "bills": [
       {
         "state_id": "HB 4560",
@@ -14,7 +14,8 @@
         "status": null,
         "position": "support",
         "position_detail": null,
-        "last_action_date": "2017-05-03 04:00:00"
+        "last_action_date": "2017-05-03 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4560"
       },
       {
         "state_id": "HB 4542",
@@ -26,7 +27,8 @@
         "status": null,
         "position": "oppose",
         "position_detail": null,
-        "last_action_date": "2017-05-02 04:00:00"
+        "last_action_date": "2017-05-02 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4542"
       },
       {
         "state_id": "HB 4004",
@@ -38,7 +40,8 @@
         "status": null,
         "position": "oppose",
         "position_detail": null,
-        "last_action_date": "2017-01-12 05:00:00"
+        "last_action_date": "2017-01-12 05:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4004"
       },
       {
         "state_id": "HB 4006",
@@ -50,7 +53,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-01-12 05:00:00"
+        "last_action_date": "2017-01-12 05:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4006"
       },
       {
         "state_id": "HB 4707",
@@ -62,7 +66,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-08 04:00:00"
+        "last_action_date": "2017-06-08 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4707"
       },
       {
         "state_id": "HB 4710",
@@ -74,7 +79,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-08 04:00:00"
+        "last_action_date": "2017-06-08 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4710"
       },
       {
         "state_id": "HB 4474",
@@ -86,7 +92,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-13 04:00:00"
+        "last_action_date": "2017-06-13 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4474"
       },
       {
         "state_id": "HB 4418",
@@ -98,7 +105,8 @@
         "status": null,
         "position": "oppose",
         "position_detail": null,
-        "last_action_date": "2017-06-13 04:00:00"
+        "last_action_date": "2017-06-13 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4418"
       },
       {
         "state_id": "HB 4419",
@@ -110,7 +118,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-13 04:00:00"
+        "last_action_date": "2017-06-13 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4419"
       },
       {
         "state_id": "HB 4416",
@@ -122,7 +131,8 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-13 04:00:00"
+        "last_action_date": "2017-06-13 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4416"
       },
       {
         "state_id": "HB 4417",
@@ -134,11 +144,12 @@
         "status": null,
         "position": "neutral",
         "position_detail": null,
-        "last_action_date": "2017-06-13 04:00:00"
+        "last_action_date": "2017-06-13 04:00:00",
+        "remote_url": "http://legislature.mi.gov/doc.aspx?2017-HB-4417"
       }
     ],
     "logo": null,
-    "layout": "detail_list"
+    "layout": "simple_table"
   },
   "bucket": "capitolzen-user-files",
   "organization": "8127002a-223f-4df9-b3e7-8fedda1ce7ed",
