@@ -10,16 +10,22 @@ const s3 = new AWS.S3();
 
 module.exports = function({data, bucket, organization, group}) {
   return new Promise((resolve, reject) => {
-    let {title} = data;
+    let {title, layout, logo} = data;
 
     //sanitize inputs
     title = title.replace(/\s/g, '-');
     title = title.replace(/[^a-zA-Z0-9-_]/g, '');
-    let template = fs.readFileSync(path.resolve(__dirname, 'templates/list.docx'), 'binary');
+
+
+    let template = fs.readFileSync(path.resolve(__dirname, `templates/${layout}.docx`), 'binary');
 
     let zip = new JSZip(template);
     let doc = new Docxtemplater();
     doc.loadZip(zip);
+
+    if (!logo) {
+      data.hasLogo = false;
+    }
 
     doc.setData(data);
     try {
