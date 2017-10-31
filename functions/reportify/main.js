@@ -1,7 +1,6 @@
 const JSZip = require('jszip'),
       AWS = require('aws-sdk'),
       fs = require('fs'),
-      moment = require('moment'),
       _ = require('lodash'),
       path = require('path'),
       Docxtemplater = require('docxtemplater');
@@ -10,11 +9,7 @@ const s3 = new AWS.S3();
 
 module.exports = function({data, bucket, organization, group}) {
   return new Promise((resolve, reject) => {
-    let {title, layout, logo} = data;
-
-    //sanitize inputs
-    title = title.replace(/\s/g, '-');
-    title = title.replace(/[^a-zA-Z0-9-_]/g, '');
+    let {id, layout, logo} = data;
 
 
     let template = fs.readFileSync(path.resolve(__dirname, `templates/${layout}.docx`), 'binary');
@@ -35,8 +30,7 @@ module.exports = function({data, bucket, organization, group}) {
       reject(error);
     }
     let buff = doc.getZip().generate({type: 'nodebuffer'});
-    let currentTime = moment().unix();
-    let key = `${organization}/${group}/${currentTime}-${title}.docx`;
+    let key = `${organization}/${group}/_${id}.docx`;
     let params = {
       Body: buff,
       Bucket: bucket,
