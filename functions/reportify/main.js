@@ -9,7 +9,7 @@ const s3 = new AWS.S3();
 
 module.exports = function({data, bucket, organization, group}) {
   return new Promise((resolve, reject) => {
-    let {id, layout, logo} = data;
+    let {id, layout, logo, slug_title=false} = data;
 
 
     let template = fs.readFileSync(path.resolve(__dirname, `templates/${layout}.docx`), 'binary');
@@ -30,7 +30,10 @@ module.exports = function({data, bucket, organization, group}) {
       reject(error);
     }
     let buff = doc.getZip().generate({type: 'nodebuffer'});
-    let key = `${organization}/${group}/_${id}.docx`;
+
+    let reportTitle = (slug_title) ? slug_title : `_${id}`;
+
+    let key = `${organization}/${group}/${reportTitle}.docx`;
     let params = {
       Body: buff,
       Bucket: bucket,
